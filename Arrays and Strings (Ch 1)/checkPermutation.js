@@ -58,3 +58,9 @@ assert(
   isPermutation('game', 'game') === true,
   'should return true if the strings are the same'
 );
+
+module.exports = {
+  isShallowEqual,
+  isPermutation,
+  charCounter,
+};
