@@ -48,3 +48,7 @@ assert(
   isUniqueBadTimeComplexity('defd') === false,
   'should return false when there is at least 1 repeated character'
 );
+
+module.exports = {
+  isUnique,
+};
