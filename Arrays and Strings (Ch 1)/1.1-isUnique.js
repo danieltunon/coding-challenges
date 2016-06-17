@@ -22,6 +22,16 @@ function isUniqueBadTimeComplexity(string) {
   }
   return true;
 }
+/* Notes
+* Should ask if ASCII or Unicode --> check how this is handled in JS
+ans:
+
+* One solution is to create an array of boolean values mapping index to char
+  it seems that in ASCII the chars go from 0 to 256?
+
+* Alternate solution is to use a bit-vector --> look into bitwise operators!!
+
+*/
 
 // Testing
 assert(
