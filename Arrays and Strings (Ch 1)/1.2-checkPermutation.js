@@ -29,6 +29,12 @@ function isPermutation(string1, string2) {
   return isShallowEqual(charCounter(string1), charCounter(string2));
 }
 
+/******** Notes ********
+* definitely ask if whitespace and capitalization matter!!!
+* alternate solution to the one that I implemented is to sort the strings
+  then just compare char by char
+
+/******** Tests ********/
 assert.deepEqual(
   charCounter('abccdea'),
   { a: 2, b: 1, c: 2, d: 1, e: 1 },
