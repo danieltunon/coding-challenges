@@ -20,14 +20,16 @@ function oneAway(str1, str2) {
   if (Object.keys(largerCount) - Object.keys(smallerCount) > 1) {
     return false;
   }
-
-  const numOfChanges = Object.keys(largerCount).reduce((changeCount, key) => {
-    if (smallerCount[key] === undefined || largerCount[key] - smallerCount[key] !== 0) {
+  const allChars = new Set(Object.keys(smallerCount).concat(Object.keys(largerCount)));
+  const numOfChanges = Array.from(allChars).reduce((changeCount, key) => {
+    if (smallerCount[key] === undefined || largerCount[key] === undefined) {
+      return changeCount + 1;
+    } else if (largerCount[key] - smallerCount[key] !== 0) {
       return changeCount + 1;
     }
     return changeCount;
   }, 0);
-
+  console.log(str1, str2, 'number of changes: ', numOfChanges);
   return numOfChanges <= 1;
 }
 
@@ -40,6 +42,7 @@ assert(oneAway('pale', 'paleo') === true, 'should return true when one new char 
 assert(oneAway('pale', 'palle') === true, 'should return true when one existing char is inserted');
 assert(oneAway('pale', 'bale') === true, 'should return true when one char is replaced');
 assert(oneAway('pale', 'bake') === false, 'should return false when two char are replaced');
+assert(oneAway('abcd', 'efgh') === false, 'should return false when all chars are replaced');
 assert(
   oneAway('pale', 'passe') === false,
   'should return false when one char is replaced and the new char is also inserted'
