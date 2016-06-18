@@ -1,5 +1,5 @@
 const assert = require('assert');
-const charCounter = require('./checkPermutation').charCounter;
+const charCounter = require('./1.2-checkPermutation').charCounter;
 // Given a string check if it is a permutation of a palindrome.
 // Does not need to be limited to dictionary words.
 
