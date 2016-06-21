@@ -1,12 +1,12 @@
 const assert = require('assert');
 
 // Given two strings check if one is a permutation of the other
-function isShallowEqual(obj1, obj2) {
-  if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+function isShallowEqual(map1, map2) {
+  if (map1.size !== map2.size) {
     return false;
   }
-  for (let key in obj1) {
-    if (obj1[key] !== obj2[key]) {
+  for (let keyval of map1) {
+    if (map2.get(keyval[0]) !== keyval[1]) {
       return false;
     }
   }
@@ -14,10 +14,10 @@ function isShallowEqual(obj1, obj2) {
 }
 
 function charCounter(string) {
-  const charCount = {};
+  const charCount = new Map();
   for (let i = 0; i < string.length; i++) {
     const char = string[i];
-    (charCount[char] && charCount[char]++) || (charCount[char] = 1);
+    charCount.set(char, charCount.has(char) ? charCount.get(char) + 1 : 1);
   }
   return charCount;
 }
@@ -35,22 +35,37 @@ function isPermutation(string1, string2) {
   then just compare char by char
 
 /******** Tests ********/
+const testMap1 = new Map();
+testMap1.set('a', 2).set('b', 1).set('c', 2).set('d', 1).set('e', 1);
+
 assert.deepEqual(
   charCounter('abccdea'),
-  { a: 2, b: 1, c: 2, d: 1, e: 1 },
-  'should return an object with the character counts'
+  testMap1,
+  'should return a map with the character counts'
 );
+
+const testMap2 = new Map();
+testMap2.set('a', 2).set('b', 1).set('c', 2).set('d', 1).set('e', 1);
+
 assert(
-  isShallowEqual({ a: 1, b: 2, c: 3 }, { c: 3, a: 1, b: 2 }) === true,
-  'should return true if the objects have the same key/values'
+  isShallowEqual(testMap1, testMap2) === true,
+  'should return true if the maps have the same key/values'
 );
+
+const testMap3 = new Map();
+testMap3.set('a', 2).set('b', 1).set('c', 2).set('d', 1).set('e', 1).set('f', 4);
+
 assert(
-  isShallowEqual({ a: 1, b: 2, c: 3 }, { c: 3, a: 1, b: 2, d: 'boo' }) === false,
-  'should return false if one object has extra key/values'
+  isShallowEqual(testMap2, testMap3) === false,
+  'should return false if one map has extra key/values'
 );
+
+const testMap4 = new Map();
+testMap4.set('d', 2).set('e', 1).set('f', 2).set('g', 1).set('h', 1);
+
 assert(
-  isShallowEqual({ a: 1, b: 2, c: 3 }, { d: 3, a: 1, b: 4 }) === false,
-  'should return false if the objects have different key/values'
+  isShallowEqual(testMap2, testMap4) === false,
+  'should return false if the maps have different key/values'
 );
 assert(
   isPermutation('dog', 'god') === true,
