@@ -2,11 +2,11 @@ import assert from 'assert';
 import { zipWith } from 'ramda';
 
 // Given an (NxN) matix rotate by 90 degrees clockwise
-function concat(a, b) {
-  return Array.isArray(a) ? a.concat(b) : [a].concat(b);
+function reverseConcat(a, b) {
+  return [b].concat(a);
 }
 function rotateMatrix(matrix) {
-  return matrix.reduceRight(zipWith(concat));
+  return matrix.reduce(zipWith(reverseConcat));
 }
 
 /******** Tests ********/
