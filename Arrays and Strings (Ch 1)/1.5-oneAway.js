@@ -10,19 +10,38 @@ const longer = (a, b) => (a.length >= b.length ? a : b);
 
 function oneAway(str1, str2, changes = 0) {
   // if length of both is 0
+  if (str1.length === 0 && str2.length === 0) {
     // return changes <= 1
-  // if head of 1 or 2 is ''
-    // return recurse with tail of both and changes + 1
+    return changes <= 1;
+  }
   // if changes > 1
+  else if (changes > 1) {
     // return false
-  // if head of 1 === head of 2
-    // return recurse with tail of both no change to changes
-  // if head of 1 !== head of 2 && lengths are ===
+    return false;
+  }
+  // if head of 1 or 2 is ''
+  else if (head(str1) === '' || head(str2) === '') {
     // return recurse with tail of both and changes + 1
-  // if head of 1 !== head of 2 && lengths are !==
-    // recurse with all of shorter and tail of longer and changes + 1
-  // if the heads are the same move on
-
+    return oneAway(tail(str1), tail(str2), changes + 1);
+  }
+  // if head of 1 === head of 2
+  else if (head(str1) === head(str2)) {
+    // return recurse with tail of both no change to changes
+    return oneAway(tail(str1), tail(str2), changes);
+  }
+  // if head of 1 !== head of 2
+  else if (head(str1) !== head(str2)) {
+    // if lengths are ===
+    if (str1.length === str2.length) {
+      // return recurse with tail of both and changes + 1
+      return oneAway(tail(str1), tail(str2), changes + 1);
+    }
+    // else lengths are !==
+    else {
+      // return recurse with all of shorter and tail of longer and changes + 1
+      return oneAway(shorter(str1, str2), tail(longer(str1, str2)), changes + 1);
+    }
+  }
 }
 
 /******** Notes ********/
