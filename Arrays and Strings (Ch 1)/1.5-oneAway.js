@@ -1,36 +1,28 @@
-const assert = require('assert');
-const charCounter = require('./1.2-checkPermutation').charCounter;
+import assert from 'assert';
+import { shorter } from './1.6-stringCompression';
+import { head, tail } from 'ramda';
 // There are theree kinds of edits that can be performed on a string:
 // insert a character, remove a character, replace a character.
 // Write a func that takes 2 strings and returns ture if they are only
 // one or zero edits away.
 
-function oneAway(str1, str2) {
-  let smallerCount;
-  let largerCount;
+const longer = (a, b) => (a.length >= b.length ? a : b);
 
-  if (str1.length > str2.length) {
-    largerCount = charCounter(str1);
-    smallerCount = charCounter(str2);
-  } else {
-    largerCount = charCounter(str2);
-    smallerCount = charCounter(str1);
-  }
+function oneAway(str1, str2, changes = 0) {
+  // if length of both is 0
+    // return changes <= 1
+  // if head of 1 or 2 is ''
+    // return recurse with tail of both and changes + 1
+  // if changes > 1
+    // return false
+  // if head of 1 === head of 2
+    // return recurse with tail of both no change to changes
+  // if head of 1 !== head of 2 && lengths are ===
+    // return recurse with tail of both and changes + 1
+  // if head of 1 !== head of 2 && lengths are !==
+    // recurse with all of shorter and tail of longer and changes + 1
+  // if the heads are the same move on
 
-  if (Object.keys(largerCount) - Object.keys(smallerCount) > 1) {
-    return false;
-  }
-  const allChars = new Set(Object.keys(smallerCount).concat(Object.keys(largerCount)));
-  const numOfChanges = Array.from(allChars).reduce((changeCount, key) => {
-    if (smallerCount[key] === undefined || largerCount[key] === undefined) {
-      return changeCount + 1;
-    } else if (largerCount[key] - smallerCount[key] !== 0) {
-      return changeCount + 1;
-    }
-    return changeCount;
-  }, 0);
-  console.log(str1, str2, 'number of changes: ', numOfChanges);
-  return numOfChanges <= 1;
 }
 
 /******** Notes ********/
