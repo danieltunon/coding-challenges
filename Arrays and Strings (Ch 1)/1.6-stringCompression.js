@@ -1,6 +1,6 @@
 const assert = require('assert');
 const charCounter = require('./1.2-checkPermutation').charCounter;
-import { compose, join, map, ifThen, head } from 'ramda';
+import { compose, join, map } from 'ramda';
 // Write a function that compresses a string using repeated
 // character counts. If the compressed string is not shorter
 // than the original return the original.
@@ -8,7 +8,7 @@ import { compose, join, map, ifThen, head } from 'ramda';
 
 const compressor = compose(join(''), map(join('')), Array.from, charCounter);
 const compressedAndOriginal = (str) => [str, compressor(str)];
-const shorter = (a, b) => a.length <= b.length ? a : b;
+const shorter = (a, b) => (a.length <= b.length ? a : b);
 const compressString = compose((a) => a.reduce(shorter), compressedAndOriginal);
 
 //////////// Tests ////////////
@@ -20,3 +20,6 @@ assert(
   compressString('aaaabcccccdee') === 'a4b1c5d1e2',
   'should return the compressed string when the compressed version is shorter'
 );
+
+/////////// Exports ///////////
+export { shorter };
