@@ -1,20 +1,23 @@
 import assert from 'assert';
-import { compose, adjust, map, addIndex } from 'ramda';
+import { compose, adjust, map, addIndex, __, first,
+         last, ifElse, none, indexOf, identity, reduce } from 'ramda';
 
 // write an algorithm such that if an element in a MxN matrix is 0,
 // its entire row and column are set to 0
-const mapRowToZero = adjust(row => map(() => 0, row));
-const mapColToZero = col => map(adjust(() => 0, col));
+const indexedReduce = addIndex(reduce);
+const zero = () => 0;
+const isNeg1 = n => n === -1;
+const mapRowToZero = (matrix) => compose(adjust(map(zero), __, matrix), first);
+const mapColToZero = (matrix) => compose(map(adjust(zero, __, matrix)), last);
+const zeroOutRowCol = compose(mapRowToZero, mapColToZero);
+const coordsOfZero = indexedReduce(
+  (coord, val, i) => (isNeg1(indexOf(0, val)) ? coord : [i, indexOf(0, val)]),
+  [-1, -1]
+);
 function zeroMatrix(matrix) {
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
-      if (matrix[i][j] === 0) {
-        return compose(mapRowToZero(i), mapColToZero(j))(matrix);
-      }
-    }
-  }
-  return matrix;
+  return ifElse(none(isNeg1), zeroOutRowCol(matrix), () => identity(matrix))(coordsOfZero(matrix));
 }
+
 /******** Tests ********/
 const matrixWithoutZero = [
   [1, 2, 3],
@@ -34,7 +37,7 @@ const zeroed = [
   [7, 8, 0],
   [10, 11, 0],
 ];
-console.log(zeroMatrix(matrixWithZero))
+
 assert.deepEqual(
   zeroMatrix(matrixWithoutZero),
   matrixWithoutZero,
