@@ -3,8 +3,8 @@ import { compose, adjust, map, addIndex } from 'ramda';
 
 // write an algorithm such that if an element in a MxN matrix is 0,
 // its entire row and column are set to 0
-const mapRowToZero = adjust(row => map(() => 0, row));
-const mapColToZero = col => map(adjust(() => 0, col));
+const mapRowToZero = adjust(rowIndex => map(() => 0, rowIndex));
+const mapColToZero = colIndex => map(adjust(() => 0, colIndex));
 function zeroMatrix(matrix) {
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
