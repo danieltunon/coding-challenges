@@ -40,28 +40,25 @@ const singlyLinkedList = {
         } else {
           prev.next = node.next;
         }
+        if (node.next === null) {
+          this.tail = prev;
+        }
         node.next = null;
-        return true;
+        return node.val;
       }
       prev = node;
     }
   },
   [Symbol.iterator]: function() {
     let node = this.head;
-    let isFirst = true;
     return {
       next() {
-        if (isFirst) {
-          isFirst = false;
-          return { value: node };
-        } else if (node.next === null) {
-          return { done: true };
-        }
+        if (node === null) return { done: true };
+        const value = node.val;
         node = node.next;
-        return { value: node };
+        return { value };
       },
       return() {
-        isFirst = true;
         return { done: true };
       },
     };
@@ -72,8 +69,8 @@ const singlyLinkedList = {
       nodes.push('--> [ null ] <-- TAIL');
       return nodes.join('');
     }
-    for (const node of this) {
-      nodes.push(`--> [ ${node.val} | ${node.next ? '\u2022' : 'null '}]`)
+    for (const val of this) {
+      nodes.push(`--> [ ${val} | ${val === null ? '\u2022' : 'null '}]`)
     }
     nodes.push(' <-- TAIL');
     return nodes.join('');
@@ -91,4 +88,16 @@ const singlyLinkedList = {
   [Symbol.toStringTag]: 'SinglyLinkedList',
 };
 
+
 const poo = Object.create(singlyLinkedList).init(1, 2, 3, 4);
+const poo2 = Object.create(singlyLinkedList).init(...[1, 2, 3, 4]);
+// poo.remove(4);
+// for(const node of poo) {
+//   console.log(node);
+// }
+console.log(poo2.toString())
+// poo.remove(1);
+// console.log(poo.toString());
+// poo.remove(4);
+// console.log(poo.toString())
+// console.log(poo.tail)
