@@ -1,4 +1,12 @@
 const singlyLinkedList = {
+  init(...vals) {
+    this.head = null;
+    this.tail = null;
+    for (const val of vals) {
+      this.addToTail(val);
+    }
+    return this;
+  },
   addToHead(val) {
     const node = { val, next: this.head };
     this.head = node;
@@ -42,7 +50,7 @@ const singlyLinkedList = {
     let node = this.head;
     let isFirst = true;
     return {
-      next: () => {
+      next() {
         if (isFirst) {
           isFirst = false;
           return { value: node };
@@ -70,44 +78,17 @@ const singlyLinkedList = {
     nodes.push(' <-- TAIL');
     return nodes.join('');
   },
+  valueOf() {
+    return this.toString();
+  },
+  // [Symbol.toPrimitive]: function(type) {
+  //   if (type === 'string') {
+  //     return this.toString();
+  //   } else {
+  //     return this.toString();
+  //   }
+  // },
+  [Symbol.toStringTag]: 'SinglyLinkedList',
 };
 
-function SinglyLinkedList(...vals) {
-  const list = Object.create(singlyLinkedList);
-  list.head = null;
-  list.tail = null;
-  for (const val of vals) {
-    list.addToTail(val);
-  }
-  return list;
-}
-
-const poo = SinglyLinkedList(1, 2, 3, 4);
-console.log(poo.toString());
-// console.log()
-
-// const poo = Object.create(SinglyLinkedList);
-// poo.head = { val: 0, next: null };
-// poo.addToHead(1).addToHead(2).addToHead(3);
-
-// console.log(poo.contains(2))
-// console.log(poo.contains(7))
-// poo.remove(2)
-// console.log(poo)
-
-// const itr = poo[Symbol.iterator]();
-// console.log(itr.next());
-// console.log(itr.next());
-// console.log(itr.return());
-// console.log(itr.next());
-// console.log(itr.next());
-// console.log(itr.next());
-// console.log(itr.next());
-// console.log([...poo]);
-// for (var tit of poo) {
-//   console.log(tit)
-// }
-//
-// for (var tit of poo) {
-//   console.log(tit)
-// }
+const poo = Object.create(singlyLinkedList).init(1, 2, 3, 4);
