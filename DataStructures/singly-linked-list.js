@@ -8,8 +8,7 @@ const singlyLinkedList = {
     return this;
   },
   addToHead(val) {
-    const node = { val, next: this.head };
-    this.head = node;
+    this.head = { val, next: this.head };
     return this;
   },
   addToTail(val) {
@@ -24,10 +23,8 @@ const singlyLinkedList = {
     return this;
   },
   contains(val) {
-    for (const node of this) {
-      if (node.val === val) {
-        return true;
-      }
+    for (const value of this) {
+      if (value === val) return true;
     }
     return false;
   },
@@ -49,14 +46,26 @@ const singlyLinkedList = {
       prev = node;
     }
   },
+  values() {
+    const iterable = this[Symbol.iterator]();
+    return {
+      [Symbol.iterator]() {
+        return this;
+      },
+      next() {
+        const next = iterable.next();
+        return next.done ? { done: true } : { value: next.value.val };
+      }
+    };
+  },
   [Symbol.iterator]: function() {
     let node = this.head;
     return {
       next() {
         if (node === null) return { done: true };
-        const value = node.val;
+        const value = { value: node };
         node = node.next;
-        return { value };
+        return value;
       },
       return() {
         return { done: true };
@@ -69,8 +78,8 @@ const singlyLinkedList = {
       nodes.push('--> [ null ] <-- TAIL');
       return nodes.join('');
     }
-    for (const val of this) {
-      nodes.push(`--> [ ${val} | ${val === null ? '\u2022' : 'null '}]`)
+    for (const node of this) {
+      nodes.push(`--> [ ${node.val} | ${node.next ? '\u2022' : 'null '}]`)
     }
     nodes.push(' <-- TAIL');
     return nodes.join('');
@@ -78,26 +87,31 @@ const singlyLinkedList = {
   valueOf() {
     return this.toString();
   },
-  // [Symbol.toPrimitive]: function(type) {
-  //   if (type === 'string') {
-  //     return this.toString();
-  //   } else {
-  //     return this.toString();
-  //   }
-  // },
+  [Symbol.toPrimitive]: function(type) {
+    if (type === 'string') {
+      return this.toString();
+    } else if (type === 'number'){
+      return 0;
+    }
+  },
   [Symbol.toStringTag]: 'SinglyLinkedList',
 };
 
 
 const poo = Object.create(singlyLinkedList).init(1, 2, 3, 4);
-const poo2 = Object.create(singlyLinkedList).init(...[1, 2, 3, 4]);
+// const poo2 = Object.create(singlyLinkedList).init(...[1, 2, 3, 4]);
 // poo.remove(4);
 // for(const node of poo) {
 //   console.log(node);
 // }
-console.log(poo2.toString())
+for (const val of poo.values()) {
+  console.log(val)
+}
+// console.log(+poo)
 // poo.remove(1);
-// console.log(poo.toString());
+// console.log(Object.prototype.toString.call(poo));
+// console.log(JSON.stringify(poo));
 // poo.remove(4);
 // console.log(poo.toString())
 // console.log(poo.tail)
+// console.log(poo.contains(2))
