@@ -2,6 +2,7 @@ const singlyLinkedList = {
   init(...vals) {
     this.head = null;
     this.tail = null;
+    this.size = 0;
     for (const val of vals) {
       this.addToTail(val);
     }
@@ -9,6 +10,7 @@ const singlyLinkedList = {
   },
   addToHead(val) {
     this.head = { val, next: this.head };
+    this.size++;
     return this;
   },
   addToTail(val) {
@@ -20,11 +22,12 @@ const singlyLinkedList = {
       this.head = node;
       this.tail = node;
     }
+    this.size++;
     return this;
   },
   contains(val) {
-    for (const value of this) {
-      if (value === val) return true;
+    for (const node of this) {
+      if (node.val === val) return true;
     }
     return false;
   },
@@ -34,13 +37,12 @@ const singlyLinkedList = {
       if (node.val === val) {
         if (prev === null) {
           this.head = node.next;
-        } else {
-          prev.next = node.next;
-        }
-        if (node.next === null) {
+        } else if (node.next === null) {
           this.tail = prev;
         }
+        prev && (prev.next = node.next);
         node.next = null;
+        this.size--;
         return node.val;
       }
       prev = node;
@@ -57,6 +59,13 @@ const singlyLinkedList = {
         return next.done ? { done: true } : { value: next.value.val };
       }
     };
+  },
+  map(transform) {
+    const mapped = Object.create(singlyLinkedList).init();
+    for (const node of this) {
+      mapped.addToTail(transform(node.val));
+    }
+    return mapped;
   },
   [Symbol.iterator]: function() {
     let node = this.head;
@@ -96,22 +105,3 @@ const singlyLinkedList = {
   },
   [Symbol.toStringTag]: 'SinglyLinkedList',
 };
-
-
-const poo = Object.create(singlyLinkedList).init(1, 2, 3, 4);
-// const poo2 = Object.create(singlyLinkedList).init(...[1, 2, 3, 4]);
-// poo.remove(4);
-// for(const node of poo) {
-//   console.log(node);
-// }
-for (const val of poo.values()) {
-  console.log(val)
-}
-// console.log(+poo)
-// poo.remove(1);
-// console.log(Object.prototype.toString.call(poo));
-// console.log(JSON.stringify(poo));
-// poo.remove(4);
-// console.log(poo.toString())
-// console.log(poo.tail)
-// console.log(poo.contains(2))
