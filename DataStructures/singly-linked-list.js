@@ -1,8 +1,8 @@
-const singlyLinkedList = {
+const SinglyLinkedList = {
   init(...vals) {
-    this.head = null;
-    this.tail = null;
-    this.size = 0;
+    Object.defineProperty(this, 'head', { value: null, writable: true });
+    Object.defineProperty(this, 'tail', { value: null, writable: true });
+    Object.defineProperty(this, 'size', { value: 0, writable: true });
     for (const val of vals) {
       this.addToTail(val);
     }
@@ -47,6 +47,7 @@ const singlyLinkedList = {
       }
       prev = node;
     }
+    return null;
   },
   values() {
     const iterable = this[Symbol.iterator]();
@@ -57,17 +58,17 @@ const singlyLinkedList = {
       next() {
         const next = iterable.next();
         return next.done ? { done: true } : { value: next.value.val };
-      }
+      },
     };
   },
   map(transform) {
-    const mapped = Object.create(singlyLinkedList).init();
+    const mapped = Object.create(SinglyLinkedList).init();
     for (const node of this) {
       mapped.addToTail(transform(node.val));
     }
     return mapped;
   },
-  [Symbol.iterator]: function() {
+  [Symbol.iterator]() {
     let node = this.head;
     return {
       next() {
@@ -88,7 +89,7 @@ const singlyLinkedList = {
       return nodes.join('');
     }
     for (const node of this) {
-      nodes.push(`--> [ ${node.val} | ${node.next ? '\u2022' : 'null '}]`)
+      nodes.push(`--> [ ${node.val} | ${node.next ? '\u2022' : 'null '}]`);
     }
     nodes.push(' <-- TAIL');
     return nodes.join('');
@@ -96,12 +97,15 @@ const singlyLinkedList = {
   valueOf() {
     return this.toString();
   },
-  [Symbol.toPrimitive]: function(type) {
+  [Symbol.toPrimitive](type) {
     if (type === 'string') {
       return this.toString();
-    } else if (type === 'number'){
+    } else if (type === 'number') {
       return 0;
     }
+    return 0;
   },
   [Symbol.toStringTag]: 'SinglyLinkedList',
 };
+
+export default SinglyLinkedList;
