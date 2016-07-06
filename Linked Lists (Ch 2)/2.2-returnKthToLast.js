@@ -1,5 +1,4 @@
 import assert from 'assert';
-import { compose } from 'ramda';
 import { SinglyLinkedList } from '../DataStructures';
 
 // Trivial solution using size property
