@@ -49,6 +49,27 @@ const SinglyLinkedList = {
     }
     return null;
   },
+  removeNode(node) {
+    let prev = null;
+    let curr = this.head;
+    while (curr !== null) {
+      if (curr === node) {
+        if (prev === null) {
+          this.head = curr.next;
+        }
+        if (curr.next === null) {
+          this.tail = prev;
+        }
+        prev && (prev.next = node.next);
+        node.next = null;
+        this.size--;
+        return this;
+      }
+      prev = curr;
+      curr = curr.next;
+    }
+    return null;
+  },
   values() {
     const iterable = this[Symbol.iterator]();
     return {
