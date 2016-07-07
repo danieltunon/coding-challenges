@@ -10,7 +10,7 @@ import { SinglyLinkedList } from '../DataStructures';
 
 // Trivial with addToTail method
 function partition(partitionValue, sll) {
-  const partitonedList = Object.create(SinglyLinkedList);
+  const partitonedList = Object.create(SinglyLinkedList).init();
   for (const val of sll.values()) {
     if (val < partitionValue) {
       partitonedList.addToHead(val);
@@ -19,6 +19,23 @@ function partition(partitionValue, sll) {
     }
   }
   return partitonedList;
+}
+
+// Cheating here because even though I'm not using the addToTail
+// I'm using the tail reference to merge the two lists together
+function partitionWithoutAddToTail(partitionValue, sll) {
+  const lt = Object.create(SinglyLinkedList).init();
+  const gte = Object.create(SinglyLinkedList).init();
+  for (const val of sll.values()) {
+    if (val < partitionValue) {
+      lt.addToHead(val);
+    } else {
+      gte.addToHead(val);
+    }
+  }
+  lt.tail.next = gte.head;
+  lt.tail = gte.tail;
+  return lt;
 }
 
 function isPartitioned(partition, ll) {
