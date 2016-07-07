@@ -10,6 +10,7 @@ const SinglyLinkedList = {
   },
   addToHead(val) {
     this.head = { val, next: this.head };
+    if (!this.tail) this.tail = this.head;
     this.size++;
     return this;
   },
