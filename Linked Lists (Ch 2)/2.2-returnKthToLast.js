@@ -47,6 +47,6 @@ assert(returnKthToLast1(3, sll) === 4, 'should return the Kth to last item in th
 assert(returnKthToLast2(3, sll) === 4, 'should return the Kth to last item');
 assert(returnKthToLast2(1, sll) === 6, 'should return the Kth to last item, Kth is last');
 assert(returnKthToLast2(6, sll) === 1, 'should return the Kth to last item, Kth is first');
-assert(returnKthToLast2(3, sll) === 4, 'should return the Kth to last item');
-assert(returnKthToLast2(1, sll) === 6, 'should return the Kth to last item, Kth is last');
-assert(returnKthToLast2(6, sll) === 1, 'should return the Kth to last item, Kth is first');
+assert(returnKthToLast3(3, sll) === 4, 'should return the Kth to last item');
+assert(returnKthToLast3(1, sll) === 6, 'should return the Kth to last item, Kth is last');
+assert(returnKthToLast3(6, sll) === 1, 'should return the Kth to last item, Kth is first');
