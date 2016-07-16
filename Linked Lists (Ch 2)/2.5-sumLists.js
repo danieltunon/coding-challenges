@@ -43,14 +43,15 @@ function sumListsForward(sll1, sll2) {
   let node1 = sll1.head;
   let node2 = sll2.head;
   let remainder = 0;
-  remainder += (sll1.head && sll1.head.val) + (sll2.head && sll2.head.val);
   while (node1 || node2 || remainder) {
-    node1 = node1 && node1.next;
-    node2 = node2 && node2.next;
     remainder *= 10;
     remainder += (node1 && node1.val) + (node2 && node2.val);
-    sum.addToTail(~~(remainder / 10));
+    if (sum.head != null || ~~(remainder / 10)) {
+      sum.addToTail(~~(remainder / 10));
+    }
     remainder %= 10;
+    node1 = node1 && node1.next;
+    node2 = node2 && node2.next;
   }
 
   return sum;
