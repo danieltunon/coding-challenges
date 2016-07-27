@@ -80,5 +80,4 @@ assert.deepEqual([...sumListsForward(N1417, N95).values()], [...N1512.values()],
 const N6439 = Object.create(SinglyLinkedList).init(6, 4, 3, 9);
 const N7825 = Object.create(SinglyLinkedList).init(7, 8, 2, 5);
 const N14264 = Object.create(SinglyLinkedList).init(1, 4, 2, 6, 4);
-console.log([...sumListsForward(N6439, N7825).values()])
 assert.deepEqual([...sumListsForward(N6439, N7825).values()], [...N14264.values()], 'should handle cases where the first digits carry over to the next place');
