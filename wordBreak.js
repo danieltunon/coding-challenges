@@ -15,7 +15,7 @@ var wordBreak = function(s, wordDict) {
     }
 
     var possibleWord;
-    for (var i = 1; i < remainingString.length; i++) {
+    for (var i = 1; i <= remainingString.length; i++) {
       possibleWord = remainingString.slice(0, i);
       if (wordDict.has(possibleWord)) {
         helper(words.concat(possibleWord), remainingString.slice(i));
@@ -26,3 +26,4 @@ var wordBreak = function(s, wordDict) {
   helper([], s);
   return sentences;
 };
+console.log(wordBreak("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", new Set(["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"])));
