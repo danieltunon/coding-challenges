@@ -6,23 +6,23 @@
  * @return {string[]}
  */
 var wordBreak = function(s, wordDict) {
-    var sentences = [];
+  var sentences = [];
 
-    function helper(words, remainingString) {
-        if (wordDict.has(remainingString)) {
-            sentences.push(words.concat(remainingString).join(' '));
-            return;}
-        }
+  function helper(words, remainingString) {
+    if (wordDict.has(remainingString)) {
+      sentences.push(words.concat(remainingString).join(' '));
+      return;
+    }
 
-        var possibleWord;
-        for (var i = 1; i < remainingString.length; i++) {
-            possibleWord = remainingString.slice(0, i);
-            if (wordDict.has(possibleWord)) {
-                helper(words.concat(possibleWord), remainingString.slice(i));
-            }
-        }
-    };
+    var possibleWord;
+    for (var i = 1; i < remainingString.length; i++) {
+      possibleWord = remainingString.slice(0, i);
+      if (wordDict.has(possibleWord)) {
+        helper(words.concat(possibleWord), remainingString.slice(i));
+      }
+    }
+  }
 
-    helper([], s);
-    return sentences;
+  helper([], s);
+  return sentences;
 };
