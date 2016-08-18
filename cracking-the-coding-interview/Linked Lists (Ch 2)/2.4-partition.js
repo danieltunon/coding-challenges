@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { SinglyLinkedList } from '../DataStructures';
+import { SinglyLinkedList } from '../../data-structures';
 
 // Write a function that partitions a linked list around a value x, such that
 // all nodes less than x come before all nodes greater than or equal to x.

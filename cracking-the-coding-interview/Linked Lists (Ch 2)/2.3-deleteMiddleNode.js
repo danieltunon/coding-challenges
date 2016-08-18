@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { SinglyLinkedList } from '../DataStructures';
+import { SinglyLinkedList } from '../../data-structures';
 
 function deleteMiddleNode(node) {
   node.val = node.next.val;

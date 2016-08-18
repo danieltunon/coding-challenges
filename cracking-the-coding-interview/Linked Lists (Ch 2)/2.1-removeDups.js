@@ -1,6 +1,6 @@
 import assert from 'assert';
 import { compose } from 'ramda';
-import { SinglyLinkedList } from '../DataStructures';
+import { SinglyLinkedList } from '../../data-structures';
 
 SinglyLinkedList.removeDups = function removeDups() {
   for (const node of this) {

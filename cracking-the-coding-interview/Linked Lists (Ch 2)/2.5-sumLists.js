@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { SinglyLinkedList } from '../DataStructures';
+import { SinglyLinkedList } from '../../data-structures';
 
 // Number represented as LL, where each node contains single digit.
 // Digits are stored in reverse order, i.e. ones at head.
