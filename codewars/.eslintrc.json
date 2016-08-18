@@ -1,0 +1,38 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "indent": [
+            2,
+            2
+        ],
+        "linebreak-style": [
+            2,
+            "unix"
+        ],
+        "quotes": [
+            2,
+            "single"
+        ],
+        "semi": [
+            2,
+            "always"
+        ],
+        "no-console": [
+          0
+        ]
+    },
+    "globals": {
+      "_": true,
+      "describe": true,
+      "expect": true,
+      "it": true,
+      "beforeEach": true,
+      "sinon": true,
+      "clock": true
+    }
+}
