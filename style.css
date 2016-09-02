@@ -1,0 +1,17 @@
+html {
+  background-color: slategray;
+}
+
+body {
+  padding: .5rem 2rem;
+}
+
+h1 {
+  color: ghostwhite;
+  font-size: 4rem;
+  text-shadow: .1rem .1rem 2rem black;
+}
+
+main {
+  margin: 2rem 0 0 0;
+}
