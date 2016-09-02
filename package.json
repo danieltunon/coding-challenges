@@ -1,12 +1,19 @@
 {
+<<<<<<< 3bba4b034ef47d344841598d03383aa2586cdbd1
   "name": "coding-challenges",
   "version": "1.0.0",
   "description": "practice with algorithms, data structures, toy problems, and front-end challenges",
+=======
+  "name": "infinite-scroll",
+  "version": "1.0.0",
+  "description": "a script that produces an infinite scroll",
+>>>>>>> Initial commit
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+<<<<<<< 3bba4b034ef47d344841598d03383aa2586cdbd1
     "algorithms",
     "data",
     "structures",
@@ -24,4 +31,11 @@
     "babel-cli": "^6.10.1",
     "babel-preset-es2015": "^6.9.0"
   }
+=======
+    "infinite",
+    "scroll"
+  ],
+  "author": "Danny Tunon",
+  "license": "ISC"
+>>>>>>> Initial commit
 }
