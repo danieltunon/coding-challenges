@@ -1,3 +1,6 @@
+const { compose } = require('ramda');
+const rl = require('readline').createInterface;
+
 const Node = {
   init(val) {
     this.val = val;
@@ -26,12 +29,22 @@ const Node = {
     return false;
   }
 };
-const Graph = {
-  init() {
-    this.nodes = [];
-    Object.defineProperty(this, 'size', { get() { this.nodes.length } });
-  },
 
+const setProp = (prop, val, instance) => { instance[prop] = val; return instance };
+
+const initGraph = compose(setProp('edges', []), Object.create);
+
+function Graph() {
+  return initGraph(Graph.prototype);
+}
+
+// Graph.prototype.fromStream = function fromStream()
+const lineReader = function lineReader() {
+  return rl({ input: stdin });
 };
+
+const fromAdjacencyList = function fromAdjacencyList(stream) {
+  stream.on('line')
+}
 
 export default Graph;
