@@ -1,5 +1,5 @@
 function findMedianSortedArrays(array1, array2) {
-  if (/* some base case */) {
+  if () {
 
   }
 
