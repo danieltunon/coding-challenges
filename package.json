@@ -36,6 +36,14 @@
     "scroll"
   ],
   "author": "Danny Tunon",
+<<<<<<< e7d569370f8516bab5f5d52ecea87ea7a00ce0a3
   "license": "ISC"
 >>>>>>> Initial commit
+=======
+  "license": "ISC",
+  "dependencies": {
+    "ramda": "^0.22.1",
+    "rxjs": "^5.0.0-beta.11"
+  }
+>>>>>>> Add dependencies: ramda, rxjs
 }
