@@ -15,3 +15,11 @@ h1 {
 main {
   margin: 2rem 0 0 0;
 }
+
+.card {
+  display: block;
+  height: 8rem;
+  background-color: white;
+  border-radius: 2rem;
+  margin: 0 0 2rem 0;
+}
