@@ -1,0 +1,27 @@
+{
+  "name": "coding-challenges",
+  "version": "1.0.0",
+  "description": "practice with algorithms, data structures, toy problems, and front-end challenges",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "algorithms",
+    "data",
+    "structures",
+    "toy",
+    "problems",
+    "coding",
+    "challenges"
+  ],
+  "author": "Danny Tunon",
+  "license": "ISC",
+  "dependencies": {
+    "ramda": "^0.21.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0"
+  }
+}
