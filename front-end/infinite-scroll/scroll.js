@@ -3,7 +3,7 @@
   document.addEventListener('DOMContentLoaded', (e) => addNCards(20));
 
   window.addEventListener('scroll', () => {
-    if (((window.innerHeight + window.scrollY) / document.body.scrollHeight) > 0.9) {
+    if (((window.innerHeight + window.scrollY) / document.body.scrollHeight) == 1) {
       addNCards(20);
     }
   });
